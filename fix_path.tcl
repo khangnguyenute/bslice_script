@@ -41,7 +41,7 @@ proc handle_inv_add {startpoint endpoint} {
   }
 
   #Get load inv, then upsizing load inv if slack is violated
-  set load_inv [get_cells -phy -o [get_nets -phy -o $endpoint/CLK -f {full_name =~ "*inv_fix_load*"}] -q]
+  set load_inv [get_cells -phy -o [get_nets -phy -o $endpoint/CLK -f {full_name =~ "*inv_fix_load*"}] -f {ref_name =~ "*INV*"}] 
   if {[string match "INVX0*" [get_attribute $load_inv ref_name]]} {
     size_cell $load_inv INVX2_LVT
 
